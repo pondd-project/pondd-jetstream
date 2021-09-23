@@ -62,7 +62,7 @@ rabbitmq:
 transformer:
   autoscaler:
     enabled: true
-    maxReplicas: 200
+    maxReplicas: 5
 
   pullPolicy: Always
   defaultTransformerImage: sslhep/servicex_func_adl_uproot_transformer:develop

@@ -1,0 +1,69 @@
+noCerts: true
+
+app:
+  adminEmail: bengal1@illinois.edu
+  tag: develop
+  pullPolicy: Always
+  auth: false
+  replicas: 1
+
+  ingress:
+    enabled: true
+    tls:
+      enabled: true
+      clusterIssuer: letsencrypt-prod
+
+codeGen:
+  image: sslhep/servicex_code_gen_func_adl_uproot
+
+didFinder:
+  rucio:
+    enabled: false
+
+  CERNOpenData:
+    enabled: true
+
+objectStore:
+    enabled: true
+    publicURL: pondd-minio.servicex.ssl-hep.org
+
+minio:
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      acme.cert-manager.io/http01-edit-in-place: "true"
+    hosts:
+    - "pondd-minio.servicex.ssl-hep.org"
+    tls:
+    - hosts:
+      - pondd-minio.servicex.ssl-hep.org
+      secretName: pondd-minio-tls
+      enabled: true
+
+postgres:
+  enabled: true
+postgresql:
+  persistence:
+    enabled: true
+    storageClass: rook-ceph-block
+  master:
+    nodeSelector:
+      kernel-ml: "true"
+
+preflight:
+  pullPolicy: Always
+rabbitmq:
+    persistence:
+      enabled: true
+      storageClass: rook-ceph-block
+
+transformer:
+  autoscaler:
+    enabled: true
+    maxReplicas: 200
+
+  pullPolicy: Always
+  defaultTransformerImage: sslhep/servicex_func_adl_uproot_transformer:develop
+

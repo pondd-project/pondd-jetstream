@@ -1,7 +1,7 @@
 noCerts: true
 
 app:
-  adminEmail: bengal1@illinois.edu
+  adminEmail: zonca@sdsc.edu
   tag: develop
   pullPolicy: Always
   auth: false
@@ -47,7 +47,7 @@ postgres:
 postgresql:
   persistence:
     enabled: true
-    storageClass: rook-ceph-block
+    storageClass: standard
   master:
     nodeSelector:
       kernel-ml: "true"
@@ -57,7 +57,7 @@ preflight:
 rabbitmq:
     persistence:
       enabled: true
-      storageClass: rook-ceph-block
+      storageClass: standard
 
 transformer:
   autoscaler:

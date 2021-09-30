@@ -8,6 +8,8 @@ app:
   replicas: 1
 
   ingress:
+    class: nginx
+    defaultBackend: default-http-backend
     enabled: true
     host: pondd-servicex.zonca.dev
     tls:

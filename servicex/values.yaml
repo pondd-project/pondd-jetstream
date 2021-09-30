@@ -49,9 +49,6 @@ postgresql:
   persistence:
     enabled: true
     storageClass: standard
-  master:
-    nodeSelector:
-      kernel-ml: "true"
 
 preflight:
   pullPolicy: Always

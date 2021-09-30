@@ -1,7 +1,7 @@
 noCerts: true
 
 app:
-  adminEmail: bengal1@illinois.edu
+  adminEmail: zonca@sdsc.edu
   tag: develop
   pullPolicy: Always
   auth: false
@@ -9,6 +9,7 @@ app:
 
   ingress:
     enabled: true
+    host: pondd-servicex.zonca.dev
     tls:
       enabled: true
       clusterIssuer: letsencrypt-prod
@@ -25,7 +26,7 @@ didFinder:
 
 objectStore:
     enabled: true
-    publicURL: pondd-minio.servicex.ssl-hep.org
+    publicURL: pondd-minio.zonca.dev
 
 minio:
   ingress:
@@ -35,10 +36,10 @@ minio:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       acme.cert-manager.io/http01-edit-in-place: "true"
     hosts:
-    - "pondd-minio.servicex.ssl-hep.org"
+    - "pondd-minio.zonca.dev"
     tls:
     - hosts:
-      - pondd-minio.servicex.ssl-hep.org
+      - pondd-minio.zonca.dev
       secretName: pondd-minio-tls
       enabled: true
 
@@ -47,22 +48,19 @@ postgres:
 postgresql:
   persistence:
     enabled: true
-    storageClass: rook-ceph-block
-  master:
-    nodeSelector:
-      kernel-ml: "true"
+    storageClass: standard
 
 preflight:
   pullPolicy: Always
 rabbitmq:
     persistence:
       enabled: true
-      storageClass: rook-ceph-block
+      storageClass: standard
 
 transformer:
   autoscaler:
     enabled: true
-    maxReplicas: 200
+    maxReplicas: 5
 
   pullPolicy: Always
   defaultTransformerImage: sslhep/servicex_func_adl_uproot_transformer:develop

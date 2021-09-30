@@ -9,6 +9,7 @@ app:
 
   ingress:
     enabled: true
+    host: pondd-servicex.zonca.dev
     tls:
       enabled: true
       clusterIssuer: letsencrypt-prod
@@ -25,7 +26,7 @@ didFinder:
 
 objectStore:
     enabled: true
-    publicURL: pondd-minio.servicex.ssl-hep.org
+    publicURL: pondd-minio.zonca.dev
 
 minio:
   ingress:
@@ -35,10 +36,10 @@ minio:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       acme.cert-manager.io/http01-edit-in-place: "true"
     hosts:
-    - "pondd-minio.servicex.ssl-hep.org"
+    - "pondd-minio.zonca.dev"
     tls:
     - hosts:
-      - pondd-minio.servicex.ssl-hep.org
+      - pondd-minio.zonca.dev
       secretName: pondd-minio-tls
       enabled: true
 

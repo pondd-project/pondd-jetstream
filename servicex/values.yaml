@@ -9,9 +9,8 @@ app:
 
   ingress:
     class: nginx
-    defaultBackend: default-http-backend
     enabled: true
-    host: pondd-servicex.zonca.dev
+    host: zonca.dev
     tls:
       enabled: true
       clusterIssuer: letsencrypt-prod
